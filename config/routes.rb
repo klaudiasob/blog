@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   devise_for :owners
   resources :owners
   get 'edit_account', to: 'owners#edit'
