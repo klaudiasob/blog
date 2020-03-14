@@ -1,0 +1,67 @@
+<%= octicon_btn('chevron-left', houses_path) %>
+<h3 class="header">Szczegóły</h3>
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="col-md-12 center">
+      <h3>Dom <%= @house.id %></h3>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="col-md-12">
+          <h6><%= octicon "home" %> Powierzchnia</h6>
+        </div>
+        <div class="col-md-12 col-value">
+          <p> <%= @house.area %> m<sup>2</sup></p>
+        </div>
+
+        <div class="col-md-12">
+          <h6><%= octicon "tag" %> Szczegóły</h6>
+        </div>
+        <div class="col-md-12 col-value">
+          <p> Piętra <%= @house.floors %></p>
+        </div>
+        <div class="col-md-12 col-value">
+          <p> Pokoje <%= @house.rooms %></p>
+        </div>
+
+        <% if @house.owner.present? %>
+          <div class="col-md-12">
+            <h6><%= octicon "person" %> Właściciel</h6>
+          </div>
+          <div class="col-md-12 col-value">
+            <p><%= "#{@house.owner.first_name} #{@house.owner.last_name}" %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-6">
+        <div class="col-md-12">
+          <h6><%= octicon "database" %> Cena</h6>
+        </div>
+        <div class="col-md-12 col-value">
+          <p><%= number_to_currency(@house.price, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %></p>
+        </div>
+
+        <div class="col-md-12">
+          <h6><%= octicon "database" %> Cena za m<sup>2</sup></h6>
+        </div>
+        <div class="col-md-12 col-value">
+          <p><%= number_to_currency(@house.price_for_m2, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <% if @house.photo.attached? %>
+      <img src="<%= url_for(@house.photo) %>" class="card-img-top" alt="...">
+    <% else %>
+      <img src="https://assets.archon.pl/images/products/mfe42422780eaf/widok-1-projekt-dom-w-balsamowcach-2-1565787666__289.jpg" class="card-img-top" alt="...">
+    <% end %>
+  </div>
+</div>
+
+
+<hr>
+

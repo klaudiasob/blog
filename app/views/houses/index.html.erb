@@ -1,0 +1,25 @@
+<div class="center">
+<h2>Własne M</h2>
+</div>
+<hr>
+<div class="row">
+  <% @houses.each do |house| %>
+    <div class="col-sm-4">
+      <div class="card house-card">
+        <% if house.photo.attached? %>
+          <img src="<%= url_for(house.photo) %>" class="card-img-top" alt="...">
+        <% else %>
+          <img src="https://assets.archon.pl/images/products/mfe42422780eaf/widok-1-projekt-dom-w-balsamowcach-2-1565787666__289.jpg" class="card-img-top" alt="...">
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title">Dom <%= house.id %></h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <div style="text-align: center">
+            <%= link_to 'Szczegóły', house_path(house), class: 'btn btn-info' %>
+            <%= link_to 'Edytuj', edit_house_path(house), class: 'btn btn-warning' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
