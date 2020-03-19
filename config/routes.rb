@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :categories
+  resources :categories, except: [:destroy]
   devise_for :owners
   resources :owners
   get 'edit_account', to: 'owners#edit'

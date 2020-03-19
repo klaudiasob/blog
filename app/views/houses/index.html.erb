@@ -1,5 +1,5 @@
 <div class="center">
-<h2>Własne M</h2>
+  <h2>Własne M</h2>
 </div>
 <hr>
 <div class="row">
@@ -13,10 +13,13 @@
         <% end %>
         <div class="card-body">
           <h5 class="card-title">Dom <%= house.id %></h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">Area: <%= house.area %> m<sup>2</sup></p>
+          <p class="card-text">Price: <%= number_to_currency(house.price, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %></p>
           <div style="text-align: center">
             <%= link_to 'Szczegóły', house_path(house), class: 'btn btn-info' %>
+            <% if current_owner == house.owner %>
             <%= link_to 'Edytuj', edit_house_path(house), class: 'btn btn-warning' %>
+              <% end %>
           </div>
         </div>
       </div>
