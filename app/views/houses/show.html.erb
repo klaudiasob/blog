@@ -50,6 +50,12 @@
         <div class="col-md-12 col-value">
           <p><%= number_to_currency(@house.price_for_m2, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %></p>
         </div>
+        <div class="col-md-12">
+          <h6>Category</h6>
+        </div>
+        <div class="col-md-12 col-value">
+          <p><%= @house.categories.pluck(:name).join(", ")  %></p>
+        </div>
       </div>
     </div>
   </div>
