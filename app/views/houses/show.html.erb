@@ -1,39 +1,44 @@
 <%= octicon_btn('chevron-left', houses_path) %>
 <h3 class="header">Szczegóły</h3>
 
+<% if current_owner == @house.owner %>
+  <%= link_to 'Edytuj', edit_house_path(@house), class: 'btn btn-warning' %>
+<% end %>
 
 <div class="row">
   <div class="col-md-6">
     <div class="col-md-12 center">
-      <h3>Dom <%= @house.id %></h3>
+      <p><%= @house.description %></p>
     </div>
     <div class="row">
       <div class="col-md-6">
         <div class="col-md-12">
-          <h6><%= octicon "home" %> Powierzchnia</h6>
+          <h6><%= octicon "home" %> Area</h6>
         </div>
         <div class="col-md-12 col-value">
-          <p> <%= @house.area %> m<sup>2</sup></p>
+          <p> Internal: <%= @house.area %> m<sup>2</sup></p>
+          <p> External: <%= @house.land_area %> m<sup>2</sup></p>
         </div>
 
         <div class="col-md-12">
           <h6><%= octicon "tag" %> Szczegóły</h6>
         </div>
         <div class="col-md-12 col-value">
-          <p> Piętra <%= @house.floors %></p>
+          <p> Floors: <%= @house.floors %></p>
         </div>
         <div class="col-md-12 col-value">
-          <p> Pokoje <%= @house.rooms %></p>
+          <p> Rooms: <%= @house.rooms %></p>
+        </div>
+        <div class="col-md-12 col-value">
+          <p> Available from: <%= @house.available_from %></p>
+        </div>
+        <div class="col-md-12 col-value">
+          <p> Market: <%= @house.market.humanize %></p>
+        </div>
+        <div class="col-md-12 col-value">
+          <p> Interior finishing: <%= @house.interior_finishing.humanize %></p>
         </div>
 
-        <% if @house.owner.present? %>
-          <div class="col-md-12">
-            <h6><%= octicon "person" %> Właściciel</h6>
-          </div>
-          <div class="col-md-12 col-value">
-            <p><%= "#{@house.owner.first_name} #{@house.owner.last_name}" %></p>
-          </div>
-        <% end %>
       </div>
 
       <div class="col-md-6">
@@ -54,8 +59,16 @@
           <h6>Category</h6>
         </div>
         <div class="col-md-12 col-value">
-          <p><%= @house.categories.pluck(:name).join(", ")  %></p>
+          <p><%= @house.categories.pluck(:name).join(", ") %></p>
         </div>
+        <% if @house.owner.present? %>
+          <div class="col-md-12">
+            <h6><%= octicon "person" %> Właściciel</h6>
+          </div>
+          <div class="col-md-12 col-value">
+            <p><%= "#{@house.owner.first_name} #{@house.owner.last_name}" %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

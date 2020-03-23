@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_14_165059) do
+ActiveRecord::Schema.define(version: 2020_03_23_112241) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2020_03_14_165059) do
     t.integer "rooms"
     t.float "price"
     t.integer "owner_id"
+    t.string "description"
+    t.float "land_area"
+    t.integer "construction_year"
+    t.integer "interior_finishing"
+    t.date "available_from"
+    t.integer "market"
+    t.float "rent"
+    t.string "media"
+    t.string "additional_info"
     t.index ["owner_id"], name: "index_houses_on_owner_id"
   end
 
