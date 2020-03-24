@@ -2,6 +2,7 @@ class House < ApplicationRecord
   has_and_belongs_to_many :categories
   belongs_to :owner, optional: false
   has_one_attached :photo
+  paginates_per 3
 
   validates :area, :price, :description, :land_area, :interior_finishing, :available_from, :market, presence: true
 
