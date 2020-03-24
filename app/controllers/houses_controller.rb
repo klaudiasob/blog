@@ -1,14 +1,14 @@
 class HousesController < ApplicationController
   before_action :authenticate_owner!, except: [:index, :show]
   before_action :set_house, only: [:show, :edit, :update]
-  before_action :check_ownership, except: [:index, :show, :new]
+  before_action :check_ownership, except: [:index, :show, :new, :create]
 
 
   def index
     if params[:query]
       @houses = House.where(floors: params[:query].to_i)
     else
-      @houses = House.all
+      @houses = House.page(params[:page])
     end
   end
 

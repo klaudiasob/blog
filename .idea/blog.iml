@@ -45,6 +45,7 @@
     <orderEntry type="library" scope="PROVIDED" name="bindex (v0.8.1, ruby-2.6.3-p62) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootsnap (v1.4.5, ruby-2.6.3-p62) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootstrap (v4.3.1, ruby-2.6.3-p62) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bootstrap4-kaminari-views (v1.0.1, ruby-2.6.3-p62) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.3, ruby-2.6.3-p62) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.1.4, ruby-2.6.3-p62) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="byebug (v11.0.1, ruby-2.6.3-p62) [gem]" level="application" />
@@ -65,6 +66,10 @@
     <orderEntry type="library" scope="PROVIDED" name="io-like (v0.3.0, ruby-2.6.3-p62) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.9.1, ruby-2.6.3-p62) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v4.3.5, ruby-2.6.3-p62) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="kaminari (v1.2.0, ruby-2.6.3-p62) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="kaminari-actionview (v1.2.0, ruby-2.6.3-p62) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="kaminari-activerecord (v1.2.0, ruby-2.6.3-p62) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="kaminari-core (v1.2.0, ruby-2.6.3-p62) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="listen (v3.1.5, ruby-2.6.3-p62) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.4.0, ruby-2.6.3-p62) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.7.1, ruby-2.6.3-p62) [gem]" level="application" />
