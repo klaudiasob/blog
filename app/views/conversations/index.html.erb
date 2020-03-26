@@ -1,0 +1,29 @@
+<div class=”ui segment”>
+  <h3>Mailbox</h3>
+  <div class=”ui list”>
+    <div class=”item”>
+      <% @conversations.each do |conversation| %>
+        <% if conversation.sender_id == current_owner.id ||      conversation.recipient_id == current_owner.id %>
+          <% if conversation.sender_id == current_owner.id %>
+            <% recipient = Owner.find(conversation.recipient_id) %>
+          <% else %>
+            <% recipient = Owner.find(conversation.sender_id) %>
+          <% end %>
+          <%= link_to recipient.first_name,   conversation_messages_path(conversation)%>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class=”ui segment”>
+  <h3>All Owners</h3>
+  <div class=”ui list”>
+    <% @owners.each do |owner| %>
+      <% if owner.id != current_owner.id %>
+        <div class=”item”>
+          <%= owner.first_name %> <%= link_to "Message me!", conversations_path(sender_id: current_owner.id, recipient_id: owner.id), method: "post"%>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
