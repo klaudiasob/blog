@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_112241) do
+ActiveRecord::Schema.define(version: 2020_03_24_125705) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -44,6 +44,11 @@ ActiveRecord::Schema.define(version: 2020_03_23_112241) do
     t.integer "house_id"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+  end
+
   create_table "houses", force: :cascade do |t|
     t.float "area"
     t.integer "floors"
@@ -60,6 +65,17 @@ ActiveRecord::Schema.define(version: 2020_03_23_112241) do
     t.string "media"
     t.string "additional_info"
     t.index ["owner_id"], name: "index_houses_on_owner_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "conversation_id"
+    t.integer "owner_id"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["owner_id"], name: "index_messages_on_owner_id"
   end
 
   create_table "owners", force: :cascade do |t|

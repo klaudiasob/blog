@@ -93,6 +93,7 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.11.1)
+    geocoder (1.6.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.6.0)
@@ -132,7 +133,9 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.12.0)
+    mocha (1.11.2)
     msgpack (1.3.1)
+    nifty-generators (0.4.6)
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
@@ -248,10 +251,13 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  geocoder
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
   listen (>= 3.0.5, < 3.2)
+  mocha
+  nifty-generators
   octicons
   puma (~> 3.11)
   rails (~> 5.2.3)

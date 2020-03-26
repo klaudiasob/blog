@@ -1,8 +1,8 @@
 <%= octicon_btn('chevron-left', houses_path) %>
-<h3 class="header">Szczegóły</h3>
+<h3 class="header">Details</h3>
 
 <% if current_owner == @house.owner %>
-  <%= link_to 'Edytuj', edit_house_path(@house), class: 'btn btn-warning' %>
+  <%= link_to 'Edit', edit_house_path(@house), class: 'btn btn-warning' %>
 <% end %>
 
 <div class="row">
@@ -21,7 +21,7 @@
         </div>
 
         <div class="col-md-12">
-          <h6><%= octicon "tag" %> Szczegóły</h6>
+          <h6><%= octicon "tag" %> Details</h6>
         </div>
         <div class="col-md-12 col-value">
           <p> Floors: <%= @house.floors %></p>
@@ -32,25 +32,28 @@
         <div class="col-md-12 col-value">
           <p> Available from: <%= @house.available_from %></p>
         </div>
-        <div class="col-md-12 col-value">
-          <p> Market: <%= @house.market.humanize %></p>
-        </div>
-        <div class="col-md-12 col-value">
-          <p> Interior finishing: <%= @house.interior_finishing.humanize %></p>
-        </div>
-
+        <% if @house.market.present? %>
+          <div class="col-md-12 col-value">
+            <p> Market: <%= @house.market.humanize %></p>
+          </div>
+        <% end %>
+        <% if @house.interior_finishing.present? %>
+          <div class="col-md-12 col-value">
+            <p> Interior finishing: <%= @house.interior_finishing.humanize %></p>
+          </div>
+        <% end %>
       </div>
 
       <div class="col-md-6">
         <div class="col-md-12">
-          <h6><%= octicon "database" %> Cena</h6>
+          <h6><%= octicon "database" %> Price</h6>
         </div>
         <div class="col-md-12 col-value">
           <p><%= number_to_currency(@house.price, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %></p>
         </div>
 
         <div class="col-md-12">
-          <h6><%= octicon "database" %> Cena za m<sup>2</sup></h6>
+          <h6><%= octicon "database" %> Price for m<sup>2</sup></h6>
         </div>
         <div class="col-md-12 col-value">
           <p><%= number_to_currency(@house.price_for_m2, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %></p>
@@ -63,10 +66,14 @@
         </div>
         <% if @house.owner.present? %>
           <div class="col-md-12">
-            <h6><%= octicon "person" %> Właściciel</h6>
+            <h6><%= octicon "person" %> Owner</h6>
           </div>
           <div class="col-md-12 col-value">
             <p><%= "#{@house.owner.first_name} #{@house.owner.last_name}" %></p>
+            <p>Phone number:  <%= "#{@house.owner.phone}" %></p>
+            <% if current_owner != @house.owner %>
+              <p> <%= link_to "Message me!", conversations_path(sender_id: current_owner.id, recipient_id: @house.owner.id), method: "post", class: "btn btn-outline-secondary btn-sm"%>
+            <% end %>
           </div>
         <% end %>
       </div>
