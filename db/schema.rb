@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_125705) do
+ActiveRecord::Schema.define(version: 2020_03_26_130955) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -70,12 +70,21 @@ ActiveRecord::Schema.define(version: 2020_03_24_125705) do
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.integer "conversation_id"
-    t.integer "owner_id"
-    t.boolean "read", default: false
+    t.integer "sender_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
-    t.index ["owner_id"], name: "index_messages_on_owner_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "message_id"
+    t.boolean "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_notifications_on_message_id"
+    t.index ["recipient_id"], name: "index_notifications_on_recipient_id"
   end
 
   create_table "owners", force: :cascade do |t|
