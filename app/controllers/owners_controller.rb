@@ -1,5 +1,6 @@
-class OwnersController < ApplicationController
+# frozen_string_literal: true
 
+class OwnersController < ApplicationController
   def show
     @owner = Owner.find(params[:id])
   end
@@ -13,7 +14,7 @@ class OwnersController < ApplicationController
     if @owner.update!(owner_params)
       redirect_to @owner
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -22,6 +23,4 @@ class OwnersController < ApplicationController
   def owner_params
     params.require(:owner).permit(:first_name, :last_name, :phone, :email)
   end
-
-
 end

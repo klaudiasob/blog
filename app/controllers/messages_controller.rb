@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessagesController < ApplicationController
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
@@ -29,17 +31,17 @@ class MessagesController < ApplicationController
 
   def create
     @message = @conversation.messages.new(message_params)
-    if @message.save
-      SendMessageMailer.new_message(@message).deliver_now
+    return unless @message.save
 
-      if current_owner == @conversation.recipient
-        recipient_id = @conversation.sender_id
-      else
-        recipient_id = @conversation.recipient_id
-      end
-      Notification.create!(message: @message, recipient_id: recipient_id, read: false)
-      redirect_to conversation_messages_path(@conversation)
-    end
+    SendMessageMailer.new_message(@message).deliver_now
+
+    recipient_id = if current_owner == @conversation.recipient
+                     @conversation.sender_id
+                   else
+                     @conversation.recipient_id
+                   end
+    Notification.create!(message: @message, recipient_id: recipient_id, read: false)
+    redirect_to conversation_messages_path(@conversation)
   end
 
   private
@@ -47,5 +49,4 @@ class MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:body, :sender_id)
   end
-
 end

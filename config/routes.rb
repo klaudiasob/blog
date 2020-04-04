@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :categories, except: [:destroy]
   devise_for :owners
@@ -10,5 +12,4 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
-
 end

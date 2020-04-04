@@ -1,5 +1,6 @@
-module ApplicationHelper
+# frozen_string_literal: true
 
+module ApplicationHelper
   def octicon_btn(icon, path)
     link_to Octicons::Octicon.new(icon, height: 30).to_svg.html_safe, path,
             class: 'btn btn-light', style: 'float: left;'
@@ -10,7 +11,6 @@ module ApplicationHelper
   end
 
   def notifications_count
-    Notification.where(:recipient_id => current_owner.id, :read => false).count
+    Notification.where(recipient_id: current_owner.id, read: false).count
   end
-
 end

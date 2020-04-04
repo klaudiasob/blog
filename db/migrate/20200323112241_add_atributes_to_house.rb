@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAtributesToHouse < ActiveRecord::Migration[5.2]
   def change
     add_column :houses, :description, :string, allow_nil: false

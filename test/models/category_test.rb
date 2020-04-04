@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-
   def setup
     @category = Category.new(name: 'Test name')
   end
@@ -18,8 +19,7 @@ class CategoryTest < ActiveSupport::TestCase
   test 'name should be uniq' do
     @category.save
 
-    category_2 = Category.new(name: 'Test name')
-    assert_not category_2.valid?
+    category2 = Category.new(name: 'Test name')
+    assert_not category2.valid?
   end
-
 end

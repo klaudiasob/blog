@@ -1,19 +1,19 @@
-class HousesController < ApplicationController
-  before_action :authenticate_owner!, except: [:index, :show]
-  before_action :set_house, only: [:show, :edit, :update]
-  before_action :check_ownership, except: [:index, :show, :new, :create]
+# frozen_string_literal: true
 
+class HousesController < ApplicationController
+  before_action :authenticate_owner!, except: %i[index show]
+  before_action :set_house, only: %i[show edit update]
+  before_action :check_ownership, except: %i[index show new create]
 
   def index
-    if params[:query]
-      @houses = House.where(floors: params[:query].to_i)
-    else
-      @houses = House.page(params[:page])
-    end
+    @houses = if params[:query]
+                House.where(floors: params[:query].to_i)
+              else
+                House.page(params[:page])
+              end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @house = House.new
@@ -25,12 +25,11 @@ class HousesController < ApplicationController
     if @house.save!
       redirect_to @house
     else
-      render "new"
+      render 'new'
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @house.update!(house_params)
@@ -43,7 +42,7 @@ class HousesController < ApplicationController
 
       redirect_to @house
     else
-      render "edit"
+      render 'edit'
     end
   end
 
