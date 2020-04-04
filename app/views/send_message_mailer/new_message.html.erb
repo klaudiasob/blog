@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1>Hello <%= @owner.first_name %></h1>
+<p>
+  You have new messages in your mailbox!
+</p>
+<p>
+  <%= link_to 'Mailbox', conversations_url(@owner), class: 'btn btn-info' %>
+</p>
+</body>
+</html>

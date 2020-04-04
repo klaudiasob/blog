@@ -16,20 +16,25 @@
     </form>
     <% if owner_signed_in? %>
       <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
-        <%= link_to 'Nowy dom', new_house_path, class: 'btn btn-info' %>
+        <%= link_to 'Create advertisement', new_house_path, class: 'btn btn-info' %>
       </form>
       <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
-        <%= link_to 'Edytuj ustawienia konta', edit_owner_path(current_owner), class: 'btn btn-info' %>
+        <%= link_to 'Edit account', edit_owner_path(current_owner), class: 'btn btn-info' %>
       </form>
       <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
-        <%= link_to 'Mailbox', conversations_path(current_owner), class: 'btn btn-info' %>
+        <button type="button" class="btn btn-info">
+          <%= link_to 'Mailbox', conversations_path(current_owner), style: "text-decoration: none; color: inherit;" %>
+          <% if notifications_count > 0 %>
+            <span class="badge badge-light"><%= notifications_count %></span>
+          <% end %>
+        </button>
       </form>
       <form class="form-inline my-2 my-lg-0">
-        <%= link_to 'Wyloguj', destroy_owner_session_path, method: :delete, class: 'btn btn-info' %>
+        <%= link_to 'Log out', destroy_owner_session_path, method: :delete, class: 'btn btn-info' %>
       </form>
     <% else %>
       <form class="form-inline my-2 my-lg-0">
-        <%= link_to 'Zaloguj', new_owner_session_path, class: 'btn btn-info' %>
+        <%= link_to 'Sign In', new_owner_session_path, class: 'btn btn-info' %>
       </form>
     <% end %>
   </div>

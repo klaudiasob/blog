@@ -4,12 +4,11 @@
   <%= link_to "Show Previous", "?m=all" %>
 <% end %>
 </div>
-
 <hr>
   <div class="ui segment">
     <% @messages.each do |message| %>
         <% if message.body %>
-          <% owner = Owner.find(message.owner_id) %>
+          <% owner = Owner.find(message.sender_id) %>
           <div class=”item”>
             <div class=”content”>
               <div class=”header”><strong><%= owner.first_name %></strong>     <%= message.message_time %></div>
@@ -29,7 +28,7 @@
   <div class=”field”>
     <%= f.text_area :body, class: "form-control", size: "30x7"%>
   </div>
-  <%= f.text_field :owner_id, value: current_owner.id, type: "hidden" %>
+  <%= f.text_field :sender_id, value: current_owner.id, type: "hidden" %>
   <div style="margin-top: 10px">
     <%= f.submit "Send", class: "btn btn-outline-info btn-sm" %>
   </div>

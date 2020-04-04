@@ -9,4 +9,8 @@ module ApplicationHelper
     Octicons::Octicon.new(icon, height: size).to_svg.html_safe
   end
 
+  def notifications_count
+    Notification.where(:recipient_id => current_owner.id, :read => false).count
+  end
+
 end
