@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class HousesController < ApplicationController
-  before_action :authenticate_owner!, except: %i[index show]
   before_action :set_house, only: %i[show edit update]
-  before_action :check_ownership, except: %i[index show new create]
+
+  load_and_authorize_resource
 
   def index
     @houses = if params[:query]
@@ -50,12 +50,6 @@ class HousesController < ApplicationController
 
   def set_house
     @house = House.find(params[:id])
-  end
-
-  def check_ownership
-    return if current_owner == @house.owner
-
-    redirect_to root_path
   end
 
   def house_params
