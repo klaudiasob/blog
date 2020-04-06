@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OwnersController < ApplicationController
+  load_and_authorize_resource
+
   def show
     @owner = Owner.find(params[:id])
   end

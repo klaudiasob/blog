@@ -1,0 +1,12 @@
+Style/Documentation:
+  Enabled: false
+Layout/LineLength:
+  Max: 150
+Metrics/AbcSize:
+  Max: 30
+Metrics/MethodLength:
+  Max: 20
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
