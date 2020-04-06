@@ -71,9 +71,13 @@
           <div class="col-md-12 col-value">
             <p><%= "#{@house.owner.first_name} #{@house.owner.last_name}" %></p>
             <p>Phone number:  <%= "#{@house.owner.phone}" %></p>
-            <% if current_owner != @house.owner %>
-              <p> <%= link_to "Message me!", conversations_path(sender_id: current_owner.id, recipient_id: @house.owner.id), method: "post", class: "btn btn-outline-secondary btn-sm"%>
-            <% end %>
+            <% if current_owner.present? %>
+              <% if current_owner != @house.owner %>
+                <p> <%= link_to "Message me!", conversations_path(sender_id: current_owner.id, recipient_id: @house.owner.id), method: "post", class: "btn btn-outline-secondary btn-sm" %>
+              <% end %>
+              <%else  %>
+              <p> <%= link_to "Message me!", new_owner_session_path, class: "btn btn-outline-secondary btn-sm" %>
+          <% end %>
           </div>
         <% end %>
       </div>
