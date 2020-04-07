@@ -5,6 +5,10 @@ class HousesController < ApplicationController
 
   load_and_authorize_resource
 
+  def index_owner
+    @houses = House.where(owner_id: current_owner.id)
+  end
+
   def index
     @houses = if params[:query]
                 House.where(floors: params[:query].to_i)
@@ -53,6 +57,7 @@ class HousesController < ApplicationController
   end
 
   def house_params
-    params.require(:house).permit(:area, :floors, :rooms, :price, :photo, :owner, :description, :land_area, :available_from, :market, :interior_finishing)
+    params.require(:house).permit(:area, :floors, :rooms, :price, :photo, :owner, :description,
+                                  :land_area, :available_from, :market, :interior_finishing)
   end
 end

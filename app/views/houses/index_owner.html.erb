@@ -1,0 +1,18 @@
+<div class="center">
+  <h2>My ads</h2>
+</div>
+<hr>
+
+<% @houses.each do |house| %>
+  <table class="table table-hover">
+    <tbody>
+    <tr>
+      <td>Dom <%= house.id %></td>
+      <td><%= link_to 'Details', house_path(house), class: 'btn btn-info' %> </td>
+      <td><%= link_to 'Edit', edit_house_path(house), class: 'btn btn-warning' %> </td>
+      <td><%= link_to 'Delete', root_path, class: 'btn btn-outline-danger' %> </td>
+    </tr>
+    </tbody>
+  </table>
+  <% end %>
+

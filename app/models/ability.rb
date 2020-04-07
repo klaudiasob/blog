@@ -5,7 +5,7 @@ class Ability
 
   def initialize(owner)
     if owner.present?
-      alias_action :create, :read, :update, :destroy, to: :crud
+      alias_action :create, :read, :update, :destroy, :index_owner, to: :crud
       can :crud, House, owner_id: owner.id
       can :read, House
       can :crud, Owner, id: owner.id
