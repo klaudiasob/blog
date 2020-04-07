@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class HousesController < ApplicationController
-  before_action :set_house, only: %i[show edit update]
+  before_action :set_house, only: %i[show edit update delete]
 
   load_and_authorize_resource
 
   def index_owner
-    @houses = House.where(owner_id: current_owner.id)
+    @houses = House.where(owner_id: current_owner.id).with_deleted
   end
 
   def index
@@ -35,6 +35,11 @@ class HousesController < ApplicationController
 
   def edit; end
 
+  def destroy
+    @house.destroy
+    redirect_to myhouses_path
+  end
+
   def update
     if @house.update!(house_params)
       category_ids = params[:house][:categories].drop(1)
@@ -53,7 +58,7 @@ class HousesController < ApplicationController
   private
 
   def set_house
-    @house = House.find(params[:id])
+    @house = House.with_deleted.find(params[:id])
   end
 
   def house_params

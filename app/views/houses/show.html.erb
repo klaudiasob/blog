@@ -2,7 +2,13 @@
 <h3 class="header">Details</h3>
 
 <% if current_owner == @house.owner %>
-  <%= link_to 'Edit', edit_house_path(@house), class: 'btn btn-warning' %>
+  <% if @house.deleted? %>
+    <div class="alert alert-danger" role="alert">
+      Deleted at <%= @house.deleted_at %>
+    </div>
+  <% else %>
+    <%= link_to 'Edit', edit_house_path(@house), class: 'btn btn-warning' %>
+  <% end %>
 <% end %>
 
 <div class="row">
@@ -75,9 +81,9 @@
               <% if current_owner != @house.owner %>
                 <p> <%= link_to "Message me!", conversations_path(sender_id: current_owner.id, recipient_id: @house.owner.id), method: "post", class: "btn btn-outline-secondary btn-sm" %>
               <% end %>
-              <%else  %>
+            <% else %>
               <p> <%= link_to "Message me!", new_owner_session_path, class: "btn btn-outline-secondary btn-sm" %>
-          <% end %>
+            <% end %>
           </div>
         <% end %>
       </div>

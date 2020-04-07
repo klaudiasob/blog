@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class House < ApplicationRecord
+  acts_as_paranoid
   has_and_belongs_to_many :categories
   belongs_to :owner, optional: false
   has_one_attached :photo
