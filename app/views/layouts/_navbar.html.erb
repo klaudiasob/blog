@@ -7,16 +7,19 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto"></ul>
-<!--    <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">-->
-      <%#= form_tag({ controller: "houses", action: "index" }, { method: :get }) do %>
-        <%#= label_tag(:query, "Search for:") %>
-        <%#= text_field_tag(:query) %>
-        <%#= submit_tag("Search") %>
-      <%# end %>
+    <!--    <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">-->
+    <%#= form_tag({ controller: "houses", action: "index" }, { method: :get }) do %>
+    <%#= label_tag(:query, "Search for:") %>
+    <%#= text_field_tag(:query) %>
+    <%#= submit_tag("Search") %>
+    <%# end %>
     </form>
     <% if owner_signed_in? %>
       <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
         <%= link_to 'Create advertisement', new_house_path, class: 'btn btn-info' %>
+      </form>
+      <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
+        <%= link_to 'My houses', myhouses_path, class: 'btn btn-info' %>
       </form>
       <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
         <%= link_to 'Edit account', edit_owner_path(current_owner), class: 'btn btn-info' %>
