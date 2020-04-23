@@ -1,21 +1,17 @@
 <div class="center">
   <h2>Własne M</h2>
-<%= paginate @houses, theme: 'twitter-bootstrap-4' %>
+  <%= paginate @houses, theme: 'twitter-bootstrap-4' %>
 </div>
 <hr>
 <div class="row">
   <% @houses.each do |house| %>
     <div class="col-sm-4">
       <div class="card house-card">
-        <% if house.photo.attached? %>
-          <img src="<%= url_for(house.photo) %>" class="card-img-top" alt="...">
-        <% else %>
-          <img src="https://assets.archon.pl/images/products/mfe42422780eaf/widok-1-projekt-dom-w-balsamowcach-2-1565787666__289.jpg" class="card-img-top" alt="...">
-        <% end %>
+        <img src="<%= house.photo_url %>" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Dom <%= house.id %></h5>
           <p class="card-text">Area: <%= house.area %> m<sup>2</sup></p>
-          <p class="card-text">Price: <%= number_to_currency(house.price, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %></p>
+          <p class="card-text">Price: <%= house.price_currency %></p>
           <div style="text-align: center">
             <%= link_to 'Szczegóły', house_path(house), class: 'btn btn-info' %>
             <% if current_owner == house.owner %>

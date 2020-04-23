@@ -1,0 +1,11 @@
+<%= simple_form_for(:owner, :url => registration_path(:owner)) do |f| %>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <h2 style="margin-top: 10px">Sign up</h2>
+      <p><%= f.input :email %></p>
+      <p><%= f.input :password %></p>
+      <p><%= f.input :password_confirmation %></p>
+      <%= f.button :submit, class: 'btn btn-info', value: 'Submit' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<%= simple_form_for(:owner, :url => new_password_path(:owner)) do |f| %>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <h2 style="margin-top: 10px">Forgot your password?</h2>
+      <p><%= f.input :email %></p>
+      <%= f.button :submit, class: 'btn btn-info', value: 'Send me reset password instructions' %>
+      <p style="margin-top: 10px"> <%= link_to "Sign up", new_registration_path(:owner) %></p>
+    </div>
+  </div>
+<% end %>

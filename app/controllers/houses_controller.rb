@@ -10,11 +10,7 @@ class HousesController < ApplicationController
   end
 
   def index
-    @houses = if params[:query]
-                House.where(floors: params[:query].to_i)
-              else
-                House.page(params[:page])
-              end
+    @houses = House.page(params[:page]).decorate
   end
 
   def show; end

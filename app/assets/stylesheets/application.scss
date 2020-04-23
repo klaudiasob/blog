@@ -34,3 +34,9 @@
   width: 18rem;
   margin-bottom: 10px;
 }
+
+abbr[title] {
+  border-bottom: none !important;
+  cursor: inherit !important;
+  text-decoration: none !important;
+}
