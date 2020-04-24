@@ -9,14 +9,15 @@
       <div class="card house-card">
         <img src="<%= house.photo_url %>" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Dom <%= house.id %></h5>
+          <h5 class="card-title center">Dom <%= house.id %></h5>
           <p class="card-text">Area: <%= house.area %> m<sup>2</sup></p>
           <p class="card-text">Price: <%= house.price_currency %></p>
           <div style="text-align: center">
-            <%= link_to 'Szczegóły', house_path(house), class: 'btn btn-info' %>
+            <%= link_to 'Details', house_path(house), class: 'btn btn-info' %>
             <% if current_owner == house.owner %>
-            <%= link_to 'Edytuj', edit_house_path(house), class: 'btn btn-warning' %>
-              <% end %>
+            <%= link_to 'Edit', edit_house_path(house), class: 'btn btn-warning' %>
+              <%= link_to "Delete", house, :method => :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-danger' %>
+          <% end %>
           </div>
         </div>
       </div>

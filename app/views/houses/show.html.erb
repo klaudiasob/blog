@@ -11,23 +11,36 @@
   <% end %>
 <% end %>
 
+<div class="col text-right">
+  <h5> Price:
+    <%= number_to_currency(@house.price, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %>   </h5>
+  <h6><%= number_to_currency(@house.price_for_m2, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %>
+    /m<sup>2</sup></h6>
+</div>
+
+
 <div class="row">
   <div class="col-md-6">
     <div class="col-md-12 center">
       <p><%= @house.description %></p>
+      <hr>
     </div>
+
+
+    <div class="row">
+      <div class="col-md-12 center">
+        <h6>Details</h6>
+      </div>
+    </div>
+
+
     <div class="row">
       <div class="col-md-6">
-        <div class="col-md-12">
-          <h6><%= octicon "home" %> Area</h6>
+        <div class="col-md-12 col-value">
+          <p> Area: <%= @house.area %> m<sup>2</sup></p>
         </div>
         <div class="col-md-12 col-value">
-          <p> Internal: <%= @house.area %> m<sup>2</sup></p>
-          <p> External: <%= @house.land_area %> m<sup>2</sup></p>
-        </div>
-
-        <div class="col-md-12">
-          <h6><%= octicon "tag" %> Details</h6>
+          <p> Land area: <%= @house.land_area %> m<sup>2</sup></p>
         </div>
         <div class="col-md-12 col-value">
           <p> Floors: <%= @house.floors %></p>
@@ -35,9 +48,9 @@
         <div class="col-md-12 col-value">
           <p> Rooms: <%= @house.rooms %></p>
         </div>
-        <div class="col-md-12 col-value">
-          <p> Available from: <%= @house.available_from %></p>
-        </div>
+      </div>
+
+      <div class="col-md-6">
         <% if @house.market.present? %>
           <div class="col-md-12 col-value">
             <p> Market: <%= @house.market.humanize %></p>
@@ -48,35 +61,36 @@
             <p> Interior finishing: <%= @house.interior_finishing.humanize %></p>
           </div>
         <% end %>
+        <div class="col-md-12 col-value">
+          <p> Category: <%= @house.categories.pluck(:name).join(", ") %></p>
+        </div>
+        <div class="col-md-12 col-value">
+          <p> Available from: <%= @house.available_from %></p>
+        </div>
       </div>
+    </div>
+    <hr>
 
-      <div class="col-md-6">
-        <div class="col-md-12">
-          <h6><%= octicon "database" %> Price</h6>
+    <div class="row">
+      <% if @house.owner.present? %>
+        <div class="col-md-12 center">
+          <h6> Owner</h6>
         </div>
-        <div class="col-md-12 col-value">
-          <p><%= number_to_currency(@house.price, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %></p>
         </div>
 
-        <div class="col-md-12">
-          <h6><%= octicon "database" %> Price for m<sup>2</sup></h6>
-        </div>
-        <div class="col-md-12 col-value">
-          <p><%= number_to_currency(@house.price_for_m2, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %></p>
-        </div>
-        <div class="col-md-12">
-          <h6>Category</h6>
-        </div>
-        <div class="col-md-12 col-value">
-          <p><%= @house.categories.pluck(:name).join(", ") %></p>
-        </div>
-        <% if @house.owner.present? %>
-          <div class="col-md-12">
-            <h6><%= octicon "person" %> Owner</h6>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12 col-value">
+              <p><%= "#{@house.owner.first_name} #{@house.owner.last_name}" %></p>
+            </div>
           </div>
-          <div class="col-md-12 col-value">
-            <p><%= "#{@house.owner.first_name} #{@house.owner.last_name}" %></p>
-            <p>Phone number:  <%= "#{@house.owner.phone}" %></p>
+
+          <div class="col-md-6">
+            <div class="col-md-12 col-value">
+              <p>Phone number:  <%= "#{@house.owner.phone}" %></p>
+            </div>
+          </div>
+          <div class="col-md-12 center">
             <% if current_owner.present? %>
               <% if current_owner != @house.owner %>
                 <p> <%= link_to "Message me!", conversations_path(sender_id: current_owner.id, recipient_id: @house.owner.id), method: "post", class: "btn btn-outline-secondary btn-sm" %>
@@ -85,10 +99,10 @@
               <p> <%= link_to "Message me!", new_owner_session_path, class: "btn btn-outline-secondary btn-sm" %>
             <% end %>
           </div>
-        <% end %>
+      <% end %>
       </div>
-    </div>
-  </div>
+      </div>
+
   <div class="col-md-6">
     <% if @house.photo.attached? %>
       <img src="<%= url_for(@house.photo) %>" class="card-img-top" alt="...">
@@ -99,5 +113,4 @@
 </div>
 
 
-<hr>
 

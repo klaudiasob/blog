@@ -1,0 +1,15 @@
+<%= simple_form_for(:owner, :url => edit_owner_registration_path(:owner)) do |f| %>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <h2 style="margin-top: 10px">Change your password</h2>
+      <p><%= f.input :email %></p>
+      <p><%= f.input :password %></p>
+      <p><%= f.input :password_confirmation %></p>
+      <p><%= f.input :current_password %></p>
+      <%= f.button :submit, class: 'btn btn-info', value: 'Submit' %>
+      <h2 style="margin-top: 10px">Cancel my account</h2>
+      <p>Unhappy?</p>
+      <%= link_to "Cancel my account", registration_path(current_owner), data: { confirm: "Are you sure?" }, method: :delete %>
+    </div>
+  </div>
+<%  end  %>
