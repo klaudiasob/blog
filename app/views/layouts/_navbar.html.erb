@@ -6,39 +6,45 @@
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto"></ul>
+    <ul class="navbar-nav ml-auto" >
     <!--    <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">-->
     <%#= form_tag({ controller: "houses", action: "index" }, { method: :get }) do %>
     <%#= label_tag(:query, "Search for:") %>
     <%#= text_field_tag(:query) %>
     <%#= submit_tag("Search") %>
     <%# end %>
-    </form>
+<!--    </form>-->
     <% if owner_signed_in? %>
-      <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
-        <%= link_to 'Create advertisement', new_house_path, class: 'btn btn-info' %>
-      </form>
-      <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
-        <%= link_to 'My houses', myhouses_path, class: 'btn btn-info' %>
-      </form>
-      <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
-        <%= link_to 'Edit account', edit_owner_path(current_owner), class: 'btn btn-info' %>
-      </form>
-      <form class="form-inline my-2 my-lg-0" style="margin-right: 10px">
-        <button type="button" class="btn btn-info">
-          <%= link_to 'Mailbox', conversations_path(current_owner), style: "text-decoration: none; color: inherit;" %>
+      <li class="nav-item dropdown">
+        <button class="btn btn-light dropdown-toggle" style="margin-right: 10px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= octicon "person" %>
           <% if notifications_count > 0 %>
-            <span class="badge badge-light"><%= notifications_count %></span>
+            <span class="badge badge-info"><%= notifications_count %></span>
           <% end %>
         </button>
-      </form>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href= "<%= myhouses_path %>"> My houses</a>
+            <a class="dropdown-item" href= "<%= new_house_path %>"> Create advertisement</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="<%= conversations_path(current_owner) %>">Mailbox
+              <% if notifications_count > 0 %>
+                <span class="badge badge-info"><%= notifications_count %></span>
+              <% end %>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="<%= edit_owner_path(current_owner) %>">Edit account</a>
+          </div>
+      </li>
+    <% end %>
+    <% if owner_signed_in? %>
       <form class="form-inline my-2 my-lg-0">
-        <%= link_to 'Log out', destroy_owner_session_path, method: :delete, class: 'btn btn-info' %>
+        <%= link_to 'Log out', destroy_owner_session_path, method: :delete, class: 'btn btn-light' %>
       </form>
     <% else %>
       <form class="form-inline my-2 my-lg-0">
-        <%= link_to 'Sign In', new_owner_session_path, class: 'btn btn-info' %>
+        <%= link_to 'Sign In', new_owner_session_path, class: 'btn btn-ight' %>
       </form>
     <% end %>
+    </ul>
   </div>
 </nav>
