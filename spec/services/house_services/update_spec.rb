@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe HouseServices::Update do
@@ -7,28 +9,27 @@ RSpec.describe HouseServices::Update do
 
   describe '.call' do
     context 'when params include house attributes' do
-      let(:params) {
+      let(:params) do
         {
-            area: 56,
-            land_area: 15
+          'area' => 56,
+          'land_area' => 15
         }
-      }
+      end
 
       it 'updates the house' do
         update_house
 
-        expect(house.area).to eq 56
-        expect(house.land_area).to eq 15
+        expect(house.attributes).to match(hash_including(params))
       end
     end
 
     context 'when categories are present in params' do
       let(:category) { create(:category) }
-      let(:params) {
+      let(:params) do
         {
-            categories: ['', category.id.to_s]
+          categories: ['', category.id.to_s]
         }
-      }
+      end
 
       it 'assignes category to house' do
         update_house
@@ -39,13 +40,13 @@ RSpec.describe HouseServices::Update do
       context 'when house has two categories' do
         let(:house) { create(:house, :with_two_categories) }
         let(:category) { create(:category) }
-        let(:params) {
+        let(:params) do
           {
-              categories: ['', category.id.to_s]
+            categories: ['', category.id.to_s]
           }
-        }
+        end
 
-        it 'assignes one category to house' do
+        it 'assigns one category to house' do
           update_house
 
           expect(house.categories).to include category

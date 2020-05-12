@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :house do
     association :owner
 
     area { 51 }
-    price { 500000 }
+    price { 500_000 }
     description { FFaker::DizzleIpsum.sentences }
     land_area { 10 }
     interior_finishing { :complete }
@@ -19,6 +21,5 @@ FactoryBot.define do
         create_list(:category, evaluator.categories_count, houses: [house])
       end
     end
-
   end
 end

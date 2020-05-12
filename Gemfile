@@ -48,6 +48,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'rubocop', require: false
+gem 'rubocop-rspec', require: false
 
 gem 'cancancan'
 

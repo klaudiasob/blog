@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :owner do
     first_name { FFaker::Name.first_name }
