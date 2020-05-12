@@ -1,4 +1,8 @@
+require: rubocop-rspec
+
 Style/Documentation:
+  Enabled: false
+Style/MixinUsage:
   Enabled: false
 Layout/LineLength:
   Max: 150
@@ -6,6 +10,13 @@ Metrics/AbcSize:
   Max: 30
 Metrics/MethodLength:
   Max: 20
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+
+RSpec/NestedGroups:
+  Max: 5
+RSpec/MessageSpies:
+  Enabled: false
 
 AllCops:
   Exclude:

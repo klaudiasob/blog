@@ -30,18 +30,12 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @conversation.messages.new(message_params)
-    return unless @message.save
-
-    SendMessageMailer.new_message(@message).deliver_now
-
-    recipient_id = if current_owner == @conversation.recipient
-                     @conversation.sender_id
-                   else
-                     @conversation.recipient_id
-                   end
-    Notification.create!(message: @message, recipient_id: recipient_id, read: false)
-    redirect_to conversation_messages_path(@conversation)
+    result = MessageServices::Create.new(message_params, @conversation, current_owner).call
+    if result
+      redirect_to conversation_messages_path(@conversation)
+    else
+      render 'new'
+    end
   end
 
   private

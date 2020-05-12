@@ -41,14 +41,8 @@ class HousesController < ApplicationController
   end
 
   def update
-    if @house.update!(house_params)
-      category_ids = params[:house][:categories].drop(1)
-      house_category_ids = @house.categories.pluck(:id)
-      delete_ids = house_category_ids - category_ids
-      delete_categories = @house.categories.where(id: delete_ids)
-      @house.categories.delete(delete_categories)
-      @house.categories << Category.where(id: category_ids)
-
+    result = HouseServices::Update.new(@house, house_params).call
+    if result
       redirect_to @house
     else
       render 'edit'
@@ -63,6 +57,6 @@ class HousesController < ApplicationController
 
   def house_params
     params.require(:house).permit(:area, :floors, :rooms, :price, :photo, :owner, :description,
-                                  :land_area, :available_from, :market, :interior_finishing)
+                                  :land_area, :available_from, :market, :interior_finishing, categories: [])
   end
 end
