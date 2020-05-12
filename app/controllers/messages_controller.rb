@@ -31,7 +31,11 @@ class MessagesController < ApplicationController
 
   def create
     result = MessageServices::Create.new(message_params, @conversation, current_owner).call
-    redirect_to conversation_messages_path(@conversation) if result
+    if result
+      redirect_to conversation_messages_path(@conversation)
+    else
+      render 'new'
+    end
   end
 
   private

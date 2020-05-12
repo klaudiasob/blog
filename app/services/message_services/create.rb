@@ -12,7 +12,7 @@ module MessageServices
 
     def call
       message = conversation.messages.new(params)
-      result = message.save!
+      result = message.save
       if result
         send_message(message)
         create_notification(message)

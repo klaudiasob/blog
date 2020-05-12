@@ -8,6 +8,19 @@ RSpec.describe HouseServices::Update do
   let(:house) { create(:house) }
 
   describe '.call' do
+    context 'when params are invalid' do
+      let(:params) do
+        {
+          'area' => nil,
+          'land_area' => 15
+        }
+      end
+
+      it 'returns false' do
+        expect(update_house).to be_falsey
+      end
+    end
+
     context 'when params include house attributes' do
       let(:params) do
         {

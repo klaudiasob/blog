@@ -14,27 +14,41 @@ RSpec.describe MessageServices::Create do
       allow(SendMessageMailer).to receive(:new_message).and_call_original
     end
 
-    it 'creates message' do
-      expect { create_message }.to change(Message, :count).by(1)
+    context 'when params are invalid' do
+      let(:message_params) do
+        {
+          body: nil
+        }
+      end
+
+      it 'returns false' do
+        expect(create_message).to be_falsey
+      end
     end
 
-    it 'assigns proper sender to message' do
-      create_message
-      expect(Message.last.sender).to eq(conversation.sender)
-    end
+    context 'when params are valid' do
+      it 'creates message' do
+        expect { create_message }.to change(Message, :count).by(1)
+      end
 
-    it 'assigns proper body to message' do
-      create_message
-      expect(Message.last.body).to eq(message_params[:body])
-    end
+      it 'assigns proper sender to message' do
+        create_message
+        expect(Message.last.sender).to eq(conversation.sender)
+      end
 
-    it 'creates notification' do
-      expect { create_message }.to change(Notification, :count).by(1)
-    end
+      it 'assigns proper body to message' do
+        create_message
+        expect(Message.last.body).to eq(message_params[:body])
+      end
 
-    it 'sends an email' do
-      expect(SendMessageMailer).to have_receive(:new_message)
-      create_message
+      it 'creates notification' do
+        expect { create_message }.to change(Notification, :count).by(1)
+      end
+
+      it 'sends an email' do
+        expect(SendMessageMailer).to receive(:new_message)
+        create_message
+      end
     end
 
     context 'when owner is conversation recipient' do
