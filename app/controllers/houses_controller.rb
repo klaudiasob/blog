@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HousesController < ApplicationController
-  before_action :set_house, only: %i[show edit update delete]
+  before_action :set_house, only: %i[edit update delete]
 
   load_and_authorize_resource
 
@@ -13,7 +13,9 @@ class HousesController < ApplicationController
     @houses = House.page(params[:page]).decorate
   end
 
-  def show; end
+  def show
+    @house = House.with_deleted.find(params[:id]).decorate
+  end
 
   def new
     @house = House.new

@@ -12,9 +12,8 @@
 <% end %>
 
 <div class="col text-right">
-  <h5> Price:
-    <%= number_to_currency(@house.price, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %>   </h5>
-  <h6><%= number_to_currency(@house.price_for_m2, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %>
+  <h5> Price: <%= @house.price_currency %>   </h5>
+  <h6><%= @house.price_m2_currency %>
     /m<sup>2</sup></h6>
 </div>
 
@@ -71,11 +70,9 @@
     </div>
     <hr>
 
-    <div class="row">
-      <% if @house.owner.present? %>
+      <div class="row">
         <div class="col-md-12 center">
           <h6> Owner</h6>
-        </div>
         </div>
 
         <div class="row">
@@ -99,18 +96,11 @@
               <p> <%= link_to "Message me!", new_owner_session_path, class: "btn btn-outline-secondary btn-sm" %>
             <% end %>
           </div>
-      <% end %>
+        </div>
       </div>
-      </div>
+  </div>
 
   <div class="col-md-6">
-    <% if @house.photo.attached? %>
-      <img src="<%= url_for(@house.photo) %>" class="card-img-top" alt="...">
-    <% else %>
-      <img src="https://assets.archon.pl/images/products/mfe42422780eaf/widok-1-projekt-dom-w-balsamowcach-2-1565787666__289.jpg" class="card-img-top" alt="...">
-    <% end %>
+    <img src="<%= @house.photo_url %>" class="card-img-top embed-responsive-item" alt="...">
   </div>
 </div>
-
-
-
