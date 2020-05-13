@@ -1,26 +1,25 @@
 <div class="center">
   <h2>Własne M</h2>
-<%= paginate @houses, theme: 'twitter-bootstrap-4' %>
+  <%= paginate @houses, theme: 'twitter-bootstrap-4' %>
 </div>
 <hr>
 <div class="row">
   <% @houses.each do |house| %>
     <div class="col-sm-4">
       <div class="card house-card">
-        <% if house.photo.attached? %>
-          <img src="<%= url_for(house.photo) %>" class="card-img-top" alt="...">
-        <% else %>
-          <img src="https://assets.archon.pl/images/products/mfe42422780eaf/widok-1-projekt-dom-w-balsamowcach-2-1565787666__289.jpg" class="card-img-top" alt="...">
-        <% end %>
+        <div class="embed-responsive embed-responsive-4by3">
+        <img src="<%= house.photo_url %>" class="card-img-top embed-responsive-item" alt="...">
+        </div>
         <div class="card-body">
-          <h5 class="card-title">Dom <%= house.id %></h5>
+          <h5 class="card-title center">Dom <%= house.id %></h5>
           <p class="card-text">Area: <%= house.area %> m<sup>2</sup></p>
-          <p class="card-text">Price: <%= number_to_currency(house.price, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ') %></p>
+          <p class="card-text">Price: <%= house.price_currency %></p>
           <div style="text-align: center">
-            <%= link_to 'Szczegóły', house_path(house), class: 'btn btn-info' %>
+            <%= link_to 'Details', house_path(house), class: 'btn btn-info' %>
             <% if current_owner == house.owner %>
-            <%= link_to 'Edytuj', edit_house_path(house), class: 'btn btn-warning' %>
-              <% end %>
+            <%= link_to 'Edit', edit_house_path(house), class: 'btn btn-warning' %>
+              <%= link_to "Delete", house, :method => :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-danger' %>
+          <% end %>
           </div>
         </div>
       </div>

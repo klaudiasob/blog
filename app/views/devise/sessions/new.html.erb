@@ -1,0 +1,15 @@
+<%= simple_form_for(:owner, :url => new_session_path(:owner)) do |f| %>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <h2 style="margin-top: 10px">Sign in</h2>
+      <p><%= f.input :email %></p>
+      <p><%= f.input :password %></p>
+      <p><%= f.check_box :remember_me %>
+        <%= f.label :remember_me, required: false %></p>
+      <%= f.button :submit, class: 'btn btn-info', value: 'Submit' %>
+      <p style="margin-top: 10px"><%= link_to "Forgot your password?", new_password_path(:owner) %></p>
+      <p><%= link_to "Sign up", new_registration_path(:owner) %></p>
+
+    </div>
+  </div>
+<% end %>

@@ -8,11 +8,13 @@ ruby '2.6.3'
 gem 'bootstrap'
 gem 'bootstrap4-kaminari-views'
 gem 'devise'
+gem 'draper'
 gem 'geocoder'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'nifty-generators', group: :development
 gem 'octicons'
+gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
