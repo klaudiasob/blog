@@ -5,13 +5,18 @@ class Ability
 
   def initialize(owner)
     if owner.present?
-      alias_action :create, :read, :update, :destroy, :index_owner, to: :crud
-      can :crud, House, owner_id: owner.id
-      can :read, House
-      can :crud, Owner, id: owner.id
+      can :manage, House, owner_id: owner.id
+      can :show, House.without_deleted
+      can :manage, Owner, id: owner.id
+      can :read, Category
+      if owner.admin?
+        can :manage, House
+        can :manage, Category
+      end
     else
-      can :read, House
+      can :show, House.without_deleted
       can :create, Owner
+      can :index, House
     end
   end
 end

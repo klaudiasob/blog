@@ -8,4 +8,6 @@ class Owner < ApplicationRecord
   validates_confirmation_of :password
   has_many :houses
   has_many :notifications, dependent: :destroy
+
+  validates :first_name, :last_name, :email, presence: true
 end
