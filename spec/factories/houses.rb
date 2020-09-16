@@ -6,7 +6,7 @@ FactoryBot.define do
 
     area { 51 }
     price { 500_000 }
-    description { FFaker::DizzleIpsum.sentences }
+    description { FFaker::DizzleIpsum.sentence }
     land_area { 10 }
     interior_finishing { :complete }
     available_from { Date.yesterday }
@@ -20,6 +20,18 @@ FactoryBot.define do
       after(:create) do |house, evaluator|
         create_list(:category, evaluator.categories_count, houses: [house])
       end
+    end
+
+    trait :deleted do
+      deleted_at { Date.yesterday }
+    end
+
+    trait :not_deleted do
+      deleted_at { nil }
+    end
+
+    trait :not_valid do
+      description { nil }
     end
   end
 end

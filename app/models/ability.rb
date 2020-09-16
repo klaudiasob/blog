@@ -9,6 +9,8 @@ class Ability
       can :show, House.without_deleted
       can :manage, Owner, id: owner.id
       can :read, Category
+      can :manage, Conversation, sender_id: owner.id
+      can :manage, Conversation, recipient_id: owner.id
       if owner.admin?
         can :manage, House
         can :manage, Category

@@ -6,7 +6,7 @@ class Message < ActiveRecord::Base
   validates_presence_of :body, :conversation_id, :sender_id
   has_many :notifications, dependent: :destroy
 
-  def message_time
-    created_at.strftime('%m/%d/%y at %l:%M %p')
-  end
+  scope :with_unread_notifications, lambda { |conversation_id, recipient_id|
+    joins(:notifications).where(conversation_id: conversation_id, notifications: { recipient_id: recipient_id, read: false })
+  }
 end

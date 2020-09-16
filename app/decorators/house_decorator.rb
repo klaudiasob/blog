@@ -16,7 +16,8 @@ class HouseDecorator < Draper::Decorator
   end
 
   def price_m2_currency
-    ActionController::Base.helpers.number_to_currency(object.price_for_m2, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ')
+    price_for_m2 = object.price / object.area
+    ActionController::Base.helpers.number_to_currency(price_for_m2, unit: 'zł', format: '%n %u', separator: ',', delimiter: ' ')
   end
 
   def self.collection_decorator_class

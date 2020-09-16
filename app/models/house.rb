@@ -11,8 +11,4 @@ class House < ApplicationRecord
 
   enum interior_finishing: %i[complete to_finish for_renovation]
   enum market: %i[primary secondary]
-
-  def price_for_m2
-    price / area
-  end
 end

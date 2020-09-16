@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class HousesController < ApplicationController
-  before_action :set_house, only: %i[edit update delete]
+  before_action :set_house, only: %i[show edit update destroy]
 
-  load_and_authorize_resource
+  authorize_resource
 
   def index_owner
     @houses = House.where(owner_id: current_owner.id).with_deleted
@@ -14,7 +14,7 @@ class HousesController < ApplicationController
   end
 
   def show
-    @house = House.with_deleted.find(params[:id]).decorate
+    @house = @house.decorate
   end
 
   def new
@@ -24,7 +24,7 @@ class HousesController < ApplicationController
   def create
     @house = House.new(house_params)
     @house.owner = current_owner
-    if @house.save!
+    if @house.save
       redirect_to @house
     else
       render 'new'
@@ -35,7 +35,7 @@ class HousesController < ApplicationController
 
   def destroy
     @house.destroy
-    redirect_to myhouses_path
+    redirect_to root_path
   end
 
   def update
