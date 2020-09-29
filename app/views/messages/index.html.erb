@@ -1,7 +1,7 @@
 <div style="display: inline-block">
 <%= octicon_btn('chevron-left', conversations_path) %>
 <% if @over_ten %>
-  <%= link_to "Show Previous", "?m=all" %>
+  <%= link_to "Show Previous", "?show_all=true" %>
 <% end %>
 </div>
 <hr>
@@ -11,7 +11,7 @@
           <% owner = Owner.find(message.sender_id) %>
           <div class=”item”>
             <div class=”content”>
-              <div class=”header”><strong><%= owner.first_name %></strong>     <%= message.message_time %></div>
+              <div class=”header”><strong><%= owner.first_name %></strong> <%= message.created_at %></div>
               <div class=”list”>
                 <div class=”item”>
                   <i class="right triangle icon"></i>
