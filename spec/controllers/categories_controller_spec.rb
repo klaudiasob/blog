@@ -3,7 +3,7 @@
 require 'rails_helper'
 RSpec.describe CategoriesController, type: :controller do
   describe 'GET #index' do
-    login_owner
+    login_admin
     let(:category) { create_list(:category, 3) }
 
     it 'assigns @categories' do
