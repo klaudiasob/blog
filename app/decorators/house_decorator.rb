@@ -7,7 +7,7 @@ class HouseDecorator < Draper::Decorator
     if object.photo.attached?
       h.url_for(object.photo)
     else
-      'https://assets.archon.pl/images/products/mfe42422780eaf/widok-1-projekt-dom-w-balsamowcach-2-1565787666__289.jpg'
+      'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?cs=srgb&dl=pexels-binyamin-mellish-106399.jpg'
     end
   end
 

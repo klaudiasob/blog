@@ -6,6 +6,7 @@ FactoryBot.define do
     last_name { FFaker::Name.last_name }
     email { FFaker::Internet.email }
     password { FFaker::Internet.password }
+    phone { FFaker::PhoneNumber.short_phone_number }
 
     trait :admin do
       admin { true }

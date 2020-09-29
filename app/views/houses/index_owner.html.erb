@@ -5,7 +5,7 @@
   <tbody>
   <% @houses.each do |house| %>
     <tr>
-      <td>Dom <%= house.id %></td>
+      <td>House <%= house.id %></td>
       <td><%= link_to 'Details', house_path(house), class: 'btn btn-info' %> </td>
       <% if house.deleted? %>
         <td>Deleted</td>

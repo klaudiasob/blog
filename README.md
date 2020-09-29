@@ -1,24 +1,41 @@
-# README
+# House Market App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[house-market.com](https://example.com)
 
-Things you may want to cover:
+- Ruby [2.5.1](https://github.com/klaudiasob/blog/blob/master/.ruby-version#L1)
+- Rails [5.2.3](https://github.com/klaudiasob/blog/blob/master/Gemfile#L19)
 
-* Ruby version
+## Install
+#### 1. Check out the repository
 
-* System dependencies
+```bash
+git clone git@github.com:klaudiasob/blog.git
+```
 
-* Configuration
+#### 2. Update database.yml file
 
-* Database creation
+Update the database configuration as required.
 
-* Database initialization
+#### 3. Create and setup the database
 
-* How to run the test suite
+Run the following commands to setup the database and populate it with seed data.
 
-* Services (job queues, cache servers, search engines, etc.)
+```ruby
+bundle exec rake db:setup
+```
 
-* Deployment instructions
+#### 4. Start the Rails server
 
-* ...
+You can start the rails server using the command given below.
+
+```ruby
+bundle exec rails s
+```
+
+And now you can visit the site with the URL http://localhost:3000
+
+#### Test data
+You can use following accounts to login into the application:
+- email: `owner@example.com`; password: `password`
+- email: `buyer@example.com`; password: `password`
+- email: `admin@example.com`; password: `password`

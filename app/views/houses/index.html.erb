@@ -1,5 +1,5 @@
 <div class="center">
-  <h2>Własne M</h2>
+  <h2>House Market</h2>
   <%= paginate @houses, theme: 'twitter-bootstrap-4' %>
 </div>
 <hr>
@@ -11,7 +11,7 @@
         <img src="<%= house.photo_url %>" class="card-img-top embed-responsive-item" alt="...">
         </div>
         <div class="card-body">
-          <h5 class="card-title center">Dom <%= house.id %></h5>
+          <h5 class="card-title center">House <%= house.id %></h5>
           <p class="card-text">Area: <%= house.area %> m<sup>2</sup></p>
           <p class="card-text">Price: <%= house.price_currency %></p>
           <div style="text-align: center">

@@ -4,13 +4,13 @@ FactoryBot.define do
   factory :house do
     association :owner
 
-    area { 51 }
-    price { 500_000 }
+    area { rand(49..300) }
+    price { rand(300_000..1_000_000) }
     description { FFaker::DizzleIpsum.sentence }
-    land_area { 10 }
-    interior_finishing { :complete }
+    land_area { rand(10..1000) }
+    interior_finishing { %i[complete to_finish for_renovation].sample }
     available_from { Date.yesterday }
-    market { :primary }
+    market { %i[primary secondary].sample }
 
     trait :with_two_categories do
       transient do
