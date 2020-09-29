@@ -14,7 +14,7 @@ class OwnersController < ApplicationController
   def update
     @owner = Owner.find(params[:id])
     if @owner.update(owner_params)
-      redirect_to @owner
+      redirect_to @owner, notice: 'User was successfully updated.'
     else
       render 'edit'
     end

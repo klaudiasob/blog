@@ -22,12 +22,14 @@ class HousesController < ApplicationController
   end
 
   def create
-    @house = House.new(house_params)
+    @house = House.new
     @house.owner = current_owner
-    if @house.save
-      redirect_to @house
+    result = HouseServices::Update.new(@house, house_params).call
+
+    if result
+      redirect_to @house, notice: 'House was successfully created.'
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -35,13 +37,13 @@ class HousesController < ApplicationController
 
   def destroy
     @house.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: 'House was successfully destroyed.'
   end
 
   def update
     result = HouseServices::Update.new(@house, house_params).call
     if result
-      redirect_to @house
+      redirect_to @house, notice: 'House was successfully updated.'
     else
       render 'edit'
     end
