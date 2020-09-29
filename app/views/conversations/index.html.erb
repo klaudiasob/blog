@@ -1,31 +1,27 @@
 <div class="center">
   <h3>Mailbox</h3>
 </div>
-<div class=”ui segment”>
-  <div class=”ui list”>
-    <div class=”item”>
-      <% @conversations.each do |conversation| %>
-        <% if conversation.sender_id == current_owner.id || conversation.recipient_id == current_owner.id %>
-          <% if conversation.sender_id == current_owner.id %>
-            <% recipient = Owner.find(conversation.recipient_id) %>
-          <% else %>
-            <% recipient = Owner.find(conversation.sender_id) %>
-          <% end %>
-          <div class=”row”>
-            <div class="column">
-              <span style="margin-right: 20px"><%= recipient.first_name %> <%= recipient.last_name %></span>
-            </div>
-            <div class="column">
-              <button type="button" class="btn btn-outline-info btn-sm">
-                <%= link_to "Show messages", conversation_messages_path(conversation), style: "text-decoration: none; color: inherit;" %>
-                <% if Message.with_unread_notifications(conversation.id, current_owner.id).count > 0 %>
-                  <span class="badge badge-light"><%= Message.with_unread_notifications(conversation.id, current_owner.id).count %></span>
-                <% end %>
-              </button>
-            </div>
-        <% end %>
+<table class="table table-hover">
+  <tbody>
+  <% @conversations.each do |conversation| %>
+    <% if conversation.sender_id == current_owner.id || conversation.recipient_id == current_owner.id %>
+      <% if conversation.sender_id == current_owner.id %>
+        <% recipient = Owner.find(conversation.recipient_id) %>
+      <% else %>
+        <% recipient = Owner.find(conversation.sender_id) %>
       <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+
+      <tr>
+        <td><%= recipient.first_name %> <%= recipient.last_name %></td>
+        <td>
+          <button type="button" class="btn btn-outline-info btn-sm">
+            <%= link_to "Show messages", conversation_messages_path(conversation), style: "text-decoration: none; color: inherit;" %>
+            <% if Message.with_unread_notifications(conversation.id, current_owner.id).count > 0 %>
+              <span class="badge badge-light"><%= Message.with_unread_notifications(conversation.id, current_owner.id).count %></span>
+            <% end %>
+          </button>
+        </td>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>

@@ -1,10 +1,9 @@
 <div class="center">
   <h2>My ads</h2>
 </div>
-
-<% @houses.each do |house| %>
-  <table class="table table-hover">
-    <tbody>
+<table class="table table-hover">
+  <tbody>
+  <% @houses.each do |house| %>
     <tr>
       <td>Dom <%= house.id %></td>
       <td><%= link_to 'Details', house_path(house), class: 'btn btn-info' %> </td>
@@ -16,7 +15,6 @@
         <td><%= button_to "Delete", house, :method => :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-danger' %> </td>
       <% end %>
     </tr>
-    </tbody>
-  </table>
-<% end %>
-
+  <% end %>
+  </tbody>
+</table>

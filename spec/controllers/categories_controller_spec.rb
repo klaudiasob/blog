@@ -17,14 +17,6 @@ RSpec.describe CategoriesController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    it 'assigns the requested category to @category' do
-      category = create(:category)
-      get :show, params: { id: category.id }
-      expect(assigns(:category)).to eq(category)
-    end
-  end
-
   describe 'PATCH #update' do
     let(:category) { create(:category) }
 

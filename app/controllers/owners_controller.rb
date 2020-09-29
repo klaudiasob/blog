@@ -3,10 +3,6 @@
 class OwnersController < ApplicationController
   load_and_authorize_resource
 
-  def show
-    @owner = Owner.find(params[:id])
-  end
-
   def edit
     @owner = current_owner
   end
@@ -14,7 +10,7 @@ class OwnersController < ApplicationController
   def update
     @owner = Owner.find(params[:id])
     if @owner.update(owner_params)
-      redirect_to @owner, notice: 'User was successfully updated.'
+      redirect_to root_path, notice: 'User was successfully updated.'
     else
       render 'edit'
     end
