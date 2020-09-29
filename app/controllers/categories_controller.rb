@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show edit update destroy]
+  before_action :set_category, only: %i[edit update destroy]
   authorize_resource
 
   def index
     @categories = Category.all
   end
-
-  def show; end
 
   def new
     @category = Category.new
@@ -20,7 +18,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
+      redirect_to categories_path, notice: 'Category was successfully created.'
     else
       render :new
     end
@@ -28,7 +26,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: 'Category was successfully updated.'
+      redirect_to categories_path, notice: 'Category was successfully updated.'
     else
       render :edit
     end
