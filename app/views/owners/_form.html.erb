@@ -1,3 +1,12 @@
+<div id="error_explanation">
+  <ul>
+    <% @owner.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+
+
 <%= form_for @owner do |f| %>
   <div class="form-row">
     <div class="form-group col-md-6">
