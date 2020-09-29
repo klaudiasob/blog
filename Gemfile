@@ -57,11 +57,12 @@ gem 'cancancan'
 
 gem 'paranoia', '~> 2.2'
 
+gem 'factory_bot_rails'
+gem 'ffaker'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails'
-  gem 'ffaker'
   gem 'rspec-rails'
 end
 

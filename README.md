@@ -1,8 +1,8 @@
 # House Market App
 
-[house-market.com](https://example.com)
+[house-market-app](https://mighty-dawn-88051.herokuapp.com/)
 
-- Ruby [2.5.1](https://github.com/klaudiasob/blog/blob/master/.ruby-version#L1)
+- Ruby [2.6.3](https://github.com/klaudiasob/blog/blob/master/.ruby-version#L1)
 - Rails [5.2.3](https://github.com/klaudiasob/blog/blob/master/Gemfile#L19)
 
 ## Install
