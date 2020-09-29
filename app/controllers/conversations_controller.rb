@@ -2,6 +2,7 @@
 
 class ConversationsController < ApplicationController
   before_action :authenticate_owner!
+  authorize_resource
 
   def index
     @owners = Owner.all

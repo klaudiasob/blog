@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :categories, except: [:destroy]
+  resources :categories
   devise_for :owners, controllers: { registrations: 'registrations' }
   resources :owners
   get 'edit_account', to: 'owners#edit'
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :houses
   get 'myhouses', to: 'houses#index_owner'
 
-  resources :conversations do
+  resources :conversations, except: [:show] do
     resources :messages
   end
 end
