@@ -12,9 +12,11 @@
 git clone git@github.com:klaudiasob/blog.git
 ```
 
-#### 2. Update database.yml file
+#### 2. Install gems
 
-Update the database configuration as required.
+```ruby
+bundle install
+```
 
 #### 3. Create and setup the database
 
